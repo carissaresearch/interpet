@@ -6,7 +6,9 @@ This repository contains the notebooks used to curate a PET-degrading enzyme (PE
 
 1. **`1D_Dataset_Curation_Final.ipynb`** — Aggregates sequences from PlasticDB, PAZy, PlasticEnz, and PED; defines positive (PET-active) and negative (non-PET-active) labels; removes duplicates, label conflicts, and benchmark leakage; filters near-duplicate sequences with CD-HIT-2D; and computes ESM-2 embeddings for class-separation visualization. Outputs `train_final.*` and `benchmark_final.*`.
 2. **`3D_Dataset_Acquisition_Final.ipynb`** — For each curated sequence, retrieves an experimental structure from RCSB PDB when a high-identity match exists, otherwise falls back to a predicted structure.
-3. 
+3. **`Model1`–`Model8`** — Ablation studies comparing input representation (ESM-2 embedding, ProtT5 embedding, AAC/CTD handcrafted features, sequence graph, structure-aware graph) and classifier (XGBoost, Random Forest, GraphSAGE).
+4. **`Model_Comparison_All.ipynb`** — Does not train any model; reads the saved artifacts from Model #1–#8 and compiles them into consolidated comparison tables, charts, and an Excel workbook.
+
 ## Data Sources
 
 Raw data is **not included** in this repository, as it originates from third-party public databases. Download it directly from the sources below and place it according to the paths configured in `1D_Dataset_Curation_Final.ipynb` (see the "Configure data source paths" cell):
@@ -56,6 +58,8 @@ If CD-HIT is not available, the notebook still runs, but the similarity-filterin
 | `datasets/benchmark_final_labels.csv` | Benchmark labels & metadata |
 | `datasets/X_train_embeddings.npy` | ESM-2 embeddings, training set (optional, large) |
 | `datasets/X_benchmark_embeddings.npy` | ESM-2 embeddings, benchmark set (optional, large) |
+| Model #1–8 artifacts | Trained model outputs, metrics, predictions (per-notebook) |
+| Model comparison outputs | Consolidated comparison tables/charts/Excel workbook |
 
 Large files (embeddings, trained model weights) should not be committed to plain git — use Git LFS or external hosting (e.g., Zenodo) if they need to be shared.
 
