@@ -1,0 +1,31 @@
+==============================================================================
+INTERPET ABLATION STUDY -- SUMMARY & CONCLUSION
+==============================================================================
+
+Best overall model (composite rank across F1/AUC/PR-AUC/MCC + mutagenesis biological validity): M1: ESM-2 + XGBoost (avg rank 1.83).
+
+Highest benchmark F1: M1: ESM-2 + XGBoost (F1=0.913, AUC=0.987, MCC=0.897, n_benchmark=139).
+
+Average benchmark performance by representation family:
+  Graph                mean F1=0.867, mean AUC=0.968
+  1D embedding         mean F1=0.825, mean AUC=0.984
+  1D handcrafted       mean F1=0.753, mean AUC=0.959
+
+XGBoost vs Random Forest (averaged across ESM-2/ProtT5/AAC-CTD representations):
+  Random Forest   mean F1=0.782, mean AUC=0.973
+  XGBoost         mean F1=0.820, mean AUC=0.978
+
+Best biological validity (mean catalytic-triad recovery across IsPETase + LCC): M4: ProtT5 + RF.
+7/16 model-reference pairs (positive controls) show a statistically significant (p<0.05) combined-mutation effect at the catalytic triad.
+
+Specificity check (CalB negative control): 5/8 models showed a significant combined-mutation effect at CalB's (PETase-irrelevant) catalytic site -- a concerning sign that importance signal may not be PET-specific.
+
+Graph-based models (#7/#8, mean F1=0.867) outperform the tabular 1D models (#1-6, mean F1=0.801) on average -- but keep in mind #7/#8 are evaluated on a smaller, structure-matched benchmark subset (see the caveat in section 1), so this is directional, not strictly apples-to-apples.
+
+Within the graph family (apples-to-apples, same benchmark subset, same node features): sequence chain edges (#7) gives the better benchmark F1 (M7 F1=0.894 vs M8 F1=0.840), suggesting the extra 3D structural-contact edges do not clearly beat simple sequence adjacency for this task.
+
+==============================================================================
+Full detail for every claim above is in the tables/charts in sections 3-17,
+and in the Excel workbook exported to:
+  /content/drive/MyDrive/InterPET/models/comparison_all_models/model_comparison_all.xlsx
+==============================================================================

@@ -1,0 +1,5 @@
+model,n_tests,n_sig_raw_fdr,n_sig_partial_fdr,mean_abs_r_shrinkage,n_strong_matches
+M1: ESM-2 + XGBoost,3340,2596,2052,0.07599513115852283,40
+M3: ProtT5 + XGBoost,3340,2422,1949,0.06301136421785578,12
+M7: Graph (chain edges),3340,2641,1776,0.11277280373770998,0
+M8: Graph (contact-map edges),3340,2707,1521,0.1165722258692033,0
